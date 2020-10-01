@@ -24,15 +24,7 @@ steps:
 
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
-  #!/bin/bash
-# PLACEHOLDERS
-# [STAGING_FOLDER] - staging directory in your server
-# [STAGING_URL] - staging url
-# [STAGING_USER] - staging user in the server
-# [STAGING_MYSQLUSER] - staging mysql user
-# [STAGING_MYSQLPASSWORD] - staging mysql password
-# [ROOTUSER] - Mysql root user
-# [ROOTPASSWORD] - Mysql root password
+
 
 echo "BRANCH: $GIT_BRANCH";
 echo "NAME: $JOB_NAME";
@@ -42,14 +34,12 @@ if [ $# -ne 3 ] && [ $# -ne 5 ]
     printf "Invalid number of arguments provided. \$1=branchname \$2=jobname \$3=buildnumber\nUsage: /root/scripts/deploy.sh $GIT_BRANCH $JOB_NAME\n";
   exit 1;
 fi
-#assign params
 GIT_BRANCH=$1
 JOB_NAME=$2
 BUILD_NUMBER=$3
 DOMAIN=$4
 USERNAME=$5
 
-#initialise constants
 PROJECTWORKSPACE="/var/lib/jenkins/workspace/$JOB_NAME";
 PROJECTSTAGING="[STAGING_FOLDER]/$JOB_NAME";
 WORDPRESS="/root/repo/WordPress";
